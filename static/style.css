@@ -20,3 +20,33 @@ button {
     border: 0;
     cursor: pointer;
 }
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    padding: 40px;
+}
+
+h1 {
+    color: #003366;
+}
+
+.result-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 700px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+button,
+.button {
+
+    background-color: #003366;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+}

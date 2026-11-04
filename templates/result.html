@@ -3,23 +3,36 @@
 
 <head>
     <title>Diagnosis Result</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
 
-    <h1>Diagnosis Result</h1>
+<div class="result-card">
 
-    <p>
+    <h1>Repair Assessment Result</h1>
 
-        Repair Type:
+    <h2>Priority</h2>
 
-        {{ result }}
+    <p>{{ result.priority }}</p>
 
-    </p>
+    <h2>Recommended Trade</h2>
 
-    <a href="/">
-        Start Again
+    <p>{{ result.trade }}</p>
+
+    <h2>Attendance Target</h2>
+
+    <p>{{ result.attendance }}</p>
+
+    <h2>Assessment Notes</h2>
+
+    <p>{{ result.message }}</p>
+
+    <a href="/" class="button">
+        Start New Assessment
     </a>
+
+</div>
 
 </body>
 

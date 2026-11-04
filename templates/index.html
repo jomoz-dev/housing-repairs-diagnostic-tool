@@ -1,39 +1,47 @@
-<!DOCTYPE html>
-<html>
+<form action="/diagnose" method="post">
 
-<head>
-    <title>Housing Repairs Diagnostic Tool</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
+    <h3>Safety Assessment</h3>
 
-<body>
+    <label>
+        Is anyone currently in immediate danger?
+    </label>
 
-    <h1>Housing Repairs Diagnostic Tool</h1>
+    <select name="danger">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
 
-    <p>Select the repair type:</p>
+    <br><br>
 
-    <form action="/diagnose" method="post">
+    <label>
+        Is the property unsafe to occupy?
+    </label>
 
-        <select name="repair_type">
+    <select name="unsafe_property">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
 
-            <option value="heating">Heating</option>
+    <br><br>
 
-            <option value="water_leak">Water Leak</option>
+    <label>
+        Repair Type
+    </label>
 
-            <option value="electrical">Electrical</option>
+    <select name="repair_type">
 
-            <option value="damp">Damp & Mould</option>
+        <option value="heating">Heating</option>
+        <option value="water_leak">Water Leak</option>
+        <option value="electrical">Electrical</option>
+        <option value="damp">Damp & Mould</option>
+        <option value="roof">Roofing</option>
 
-            <option value="roof">Roofing</option>
+    </select>
 
-        </select>
+    <br><br>
 
-        <br><br>
+    <button type="submit">
+        Diagnose
+    </button>
 
-        <button type="submit">Continue</button>
-
-    </form>
-
-</body>
-
-</html>
+</form>
