@@ -1,8 +1,22 @@
 body {
     font-family: Arial, sans-serif;
-    padding: 30px;
+    padding: 40px;
+    background-color: #f4f6f8;
 }
 
 h1 {
     color: #003366;
+}
+
+select {
+    width: 250px;
+    padding: 10px;
+}
+
+button {
+    background-color: #003366;
+    color: white;
+    padding: 10px 20px;
+    border: 0;
+    cursor: pointer;
 }
