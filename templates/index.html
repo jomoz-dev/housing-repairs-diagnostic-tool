@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Housing Repairs Diagnostic Tool</title>
     <link rel="stylesheet" href="/static/style.css">
@@ -9,35 +10,27 @@
 
     <h1>Housing Repairs Diagnostic Tool</h1>
 
-    <p>
-        Select the repair type you wish to report.
-    </p>
+    <p>Select the repair type:</p>
 
-    <form>
+    <form action="/diagnose" method="post">
 
-        <select>
+        <select name="repair_type">
 
-            <option>Heating</option>
+            <option value="heating">Heating</option>
 
-            <option>Water Leak</option>
+            <option value="water_leak">Water Leak</option>
 
-            <option>Electrical</option>
+            <option value="electrical">Electrical</option>
 
-            <option>Damp & Mould</option>
+            <option value="damp">Damp & Mould</option>
 
-            <option>Doors</option>
-
-            <option>Windows</option>
-
-            <option>Roofing</option>
+            <option value="roof">Roofing</option>
 
         </select>
 
         <br><br>
 
-        <button type="submit">
-            Continue
-        </button>
+        <button type="submit">Continue</button>
 
     </form>
 
