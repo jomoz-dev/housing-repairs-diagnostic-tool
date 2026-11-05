@@ -1,6 +1,5 @@
 # housing-repairs-diagnostic-tool
 
-
 Housing Repairs Diagnostic Tool
 Overview
 The Housing Repairs Diagnostic Tool is a Python-based web application designed to support customer service advisors, housing officers and repairs teams when diagnosing repair requests.
@@ -116,6 +115,3 @@ Application Support
 Process Automation
 Software Development
 This project combines real-world housing repairs knowledge with software engineering principles to create a practical repair diagnosis and triage solution.
-=======
-Python web application for diagnosing housing repairs using decision-tree logic.
->>>>>>> 852985b32a7ec14f5b2a84cc127696b49a2bed92
