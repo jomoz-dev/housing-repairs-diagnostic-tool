@@ -1,18 +1,13 @@
-from flask import Flask, render_template, request
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-
 @app.route("/diagnose", methods=["POST"])
 def diagnose():
 
     danger = request.form["danger"]
     unsafe_property = request.form["unsafe_property"]
+    vulnerable = request.form["vulnerable"]
+
     repair_type = request.form["repair_type"]
+
+    active_leak = request.form["active_leak"]
 
     if danger == "yes" or unsafe_property == "yes":
 
@@ -25,12 +20,23 @@ def diagnose():
 
     elif repair_type == "water_leak":
 
-        result = {
-            "priority": "Urgent",
-            "trade": "Plumber",
-            "attendance": "48 Hours",
-            "message": "Water leak requires investigation."
-        }
+        if active_leak == "yes":
+
+            result = {
+                "priority": "Emergency",
+                "trade": "Plumber",
+                "attendance": "24 Hours",
+                "message": "Active water escape reported."
+            }
+
+        else:
+
+            result = {
+                "priority": "Urgent",
+                "trade": "Plumber",
+                "attendance": "48 Hours",
+                "message": "Water leak investigation required."
+            }
 
     elif repair_type == "electrical":
 
@@ -38,17 +44,28 @@ def diagnose():
             "priority": "Emergency",
             "trade": "Electrician",
             "attendance": "24 Hours",
-            "message": "Electrical issues should be assessed promptly."
+            "message": "Electrical issue reported."
         }
 
     elif repair_type == "heating":
 
-        result = {
-            "priority": "Urgent",
-            "trade": "Heating Engineer",
-            "attendance": "48 Hours",
-            "message": "Loss of heating reported."
-        }
+        if vulnerable == "yes":
+
+            result = {
+                "priority": "Emergency",
+                "trade": "Heating Engineer",
+                "attendance": "24 Hours",
+                "message": "Vulnerable resident without heating."
+            }
+
+        else:
+
+            result = {
+                "priority": "Urgent",
+                "trade": "Heating Engineer",
+                "attendance": "48 Hours",
+                "message": "Loss of heating reported."
+            }
 
     elif repair_type == "damp":
 
@@ -56,7 +73,7 @@ def diagnose():
             "priority": "Routine",
             "trade": "Damp Specialist",
             "attendance": "28 Days",
-            "message": "Inspection required."
+            "message": "Damp and mould inspection required."
         }
 
     else:
@@ -65,14 +82,10 @@ def diagnose():
             "priority": "Routine",
             "trade": "Roofer",
             "attendance": "28 Days",
-            "message": "Roofing issue logged."
+            "message": "Roofing issue reported."
         }
 
     return render_template(
         "result.html",
         result=result
     )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

@@ -1,47 +1,115 @@
-<form action="/diagnose" method="post">
+<!DOCTYPE html>
+<html>
 
-    <h3>Safety Assessment</h3>
+<head>
+    <title>Housing Repairs Diagnostic Tool</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
 
-    <label>
-        Is anyone currently in immediate danger?
-    </label>
+<body>
 
-    <select name="danger">
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-    </select>
+    <div class="result-card">
 
-    <br><br>
+        <h1>Housing Repairs Diagnostic Tool</h1>
 
-    <label>
-        Is the property unsafe to occupy?
-    </label>
+        <p>
+            Complete the assessment below to determine the repair priority.
+        </p>
 
-    <select name="unsafe_property">
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-    </select>
+        <form action="/diagnose" method="POST">
 
-    <br><br>
+            <h2>Safety Assessment</h2>
 
-    <label>
-        Repair Type
-    </label>
+            <label>
+                Is anyone currently in immediate danger?
+            </label>
 
-    <select name="repair_type">
+            <br><br>
 
-        <option value="heating">Heating</option>
-        <option value="water_leak">Water Leak</option>
-        <option value="electrical">Electrical</option>
-        <option value="damp">Damp & Mould</option>
-        <option value="roof">Roofing</option>
+            <select name="danger">
 
-    </select>
+                <option value="no">No</option>
 
-    <br><br>
+                <option value="yes">Yes</option>
 
-    <button type="submit">
-        Diagnose
-    </button>
+            </select>
 
-</form>
+            <br><br>
+
+            <label>
+                Is the property unsafe to occupy?
+            </label>
+
+            <br><br>
+
+            <select name="unsafe_property">
+
+                <option value="no">No</option>
+
+                <option value="yes">Yes</option>
+
+            </select>
+
+            <br><br>
+
+            <label>
+                Is there a vulnerable resident?
+            </label>
+
+            <br><br>
+
+            <select name="vulnerable">
+
+                <option value="no">No</option>
+
+                <option value="yes">Yes</option>
+
+            </select>
+
+            <br><br>
+
+            <h2>Repair Type</h2>
+
+            <select name="repair_type">
+
+                <option value="heating">Heating</option>
+
+                <option value="water_leak">Water Leak</option>
+
+                <option value="electrical">Electrical</option>
+
+                <option value="damp">Damp & Mould</option>
+
+                <option value="roof">Roofing</option>
+
+            </select>
+
+            <br><br>
+
+            <label>
+                Is water actively escaping?
+            </label>
+
+            <br><br>
+
+            <select name="active_leak">
+
+                <option value="no">No</option>
+
+                <option value="yes">Yes</option>
+
+            </select>
+
+            <br><br>
+
+            <button type="submit">
+                Diagnose Repair
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
