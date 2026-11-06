@@ -17,19 +17,15 @@
 
         <h2>Priority</h2>
 
-        <p>{{ result.priority }}</p>
+        <div class="priority-box">
+            {{ result.priority }}
+        </div>
 
-        <h2>Recommended Trade</h2>
+        <p><strong>Trade:</strong> {{ result.trade }}</p>
 
-        <p>{{ result.trade }}</p>
+        <p><strong>Attendance:</strong> {{ result.attendance }}</p>
 
-        <h2>Attendance Target</h2>
-
-        <p>{{ result.attendance }}</p>
-
-        <h2>Assessment Notes</h2>
-
-        <p>{{ result.message }}</p>
+        <p><strong>Reason:</strong> {{ result.message }}</p>
 
         <br>
 

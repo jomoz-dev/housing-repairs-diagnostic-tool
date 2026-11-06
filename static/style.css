@@ -31,3 +31,13 @@ button,
     max-width: 700px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+.priority-box {
+    background-color: #d9534f;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
