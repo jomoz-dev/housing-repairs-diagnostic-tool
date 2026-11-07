@@ -41,3 +41,15 @@ button,
     border-radius: 5px;
     text-align: center;
 }
+
+label {
+    font-weight: bold;
+}
+
+h2 {
+    color: #003366;
+}
+
+select {
+    width: 300px;
+}

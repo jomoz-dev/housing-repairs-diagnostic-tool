@@ -21,6 +21,11 @@ def diagnose():
     contained = request.form["contained"]
     electrics_affected = request.form["electrics_affected"]
 
+    sparking = request.form["sparking"]
+
+    burning_smell = request.form["burning_smell"]
+
+    power_loss = request.form["power_loss"]
     # Emergency safety assessment
 
     if danger == "yes" or unsafe_property == "yes":
@@ -76,13 +81,32 @@ def diagnose():
 
     elif repair_type == "electrical":
 
-        result = {
-            "priority": "Emergency",
-            "trade": "Electrician",
-            "attendance": "24 Hours",
-            "message": "Electrical issue reported."
-        }
+        if sparking == "yes" or burning_smell == "yes":
 
+            result = {
+                "priority": "Emergency",
+                "trade": "Electrician",
+                "attendance": "24 Hours",
+                "message": "Potential electrical safety risk identified."
+            }
+
+        elif power_loss == "yes":
+
+            result = {
+                "priority": "Urgent",
+                "trade": "Electrician",
+                "attendance": "48 Hours",
+                "message": "Complete loss of power reported."
+            }
+
+        else:
+
+            result = {
+                "priority": "Routine",
+                "trade": "Electrician",
+                "attendance": "28 Days",
+                "message": "Electrical inspection required."
+            }
     # Heating
 
     elif repair_type == "heating":

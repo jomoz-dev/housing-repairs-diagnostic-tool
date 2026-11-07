@@ -21,12 +21,22 @@
             {{ result.priority }}
         </div>
 
-        <p><strong>Trade:</strong> {{ result.trade }}</p>
+        <h2>Diagnostic Outcome</h2>
 
-        <p><strong>Attendance:</strong> {{ result.attendance }}</p>
+        <p>
+            <strong>Recommended Trade:</strong>
+            {{ result.trade }}
+        </p>
 
-        <p><strong>Reason:</strong> {{ result.message }}</p>
+        <p>
+            <strong>Target Attendance:</strong>
+            {{ result.attendance }}
+        </p>
 
+        <p>
+            <strong>Assessment Notes:</strong>
+            {{ result.message }}
+        </p>
         <br>
 
         <a href="/" class="button">
