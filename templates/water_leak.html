@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Water Leak Assessment</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Water Leak Assessment</h1>
+
+    <form action="/diagnose" method="POST">
+
+        <input type="hidden"
+               name="repair_type"
+               value="water_leak">
+
+        <label>
+            Is water actively escaping?
+        </label>
+
+        <br><br>
+
+        <select name="active_leak">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Can the leak be contained?
+        </label>
+
+        <br><br>
+
+        <select name="contained">
+
+            <option value="yes">Yes</option>
+
+            <option value="no">No</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Is electricity affected?
+        </label>
+
+        <br><br>
+
+        <select name="electrics_affected">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Assess Repair
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

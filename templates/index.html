@@ -2,189 +2,44 @@
 <html>
 
 <head>
+
     <title>Housing Repairs Diagnostic Tool</title>
+
     <link rel="stylesheet" href="/static/style.css">
+
 </head>
 
 <body>
 
-    <div class="result-card">
+<div class="result-card">
 
-        <h1>Housing Repairs Diagnostic Tool</h1>
+    <h1>Housing Repairs Diagnostic Tool</h1>
 
-        <p>
-            Complete the assessment below to determine the repair priority.
-        </p>
+    <p>
+        Select the repair type to begin the assessment.
+    </p>
 
-        <form action="/diagnose" method="POST">
+    <form action="/assessment" method="POST">
 
-            <h2>Safety Assessment</h2>
+        <select name="repair_type">
 
-            <label>
-                Is anyone currently in immediate danger?
-            </label>
+            <option value="water_leak">Water Leak</option>
 
-            <br><br>
+            <option value="electrical">Electrical</option>
 
-            <select name="danger">
+            <option value="heating">Heating</option>
 
-                <option value="no">No</option>
+        </select>
 
-                <option value="yes">Yes</option>
+        <br><br>
 
-            </select>
+        <button type="submit">
+            Continue
+        </button>
 
-            <br><br>
+    </form>
 
-            <label>
-                Is the property unsafe to occupy?
-            </label>
-
-            <br><br>
-
-            <select name="unsafe_property">
-
-                <option value="no">No</option>
-
-                <option value="yes">Yes</option>
-
-            </select>
-
-            <br><br>
-
-            <label>
-                Is there a vulnerable resident?
-            </label>
-
-            <br><br>
-
-            <select name="vulnerable">
-
-                <option value="no">No</option>
-
-                <option value="yes">Yes</option>
-
-            </select>
-
-            <br><br>
-
-            <h2>Repair Type</h2>
-
-            <select name="repair_type">
-
-                <option value="heating">Heating</option>
-
-                <option value="water_leak">Water Leak</option>
-
-                <option value="electrical">Electrical</option>
-
-                <option value="damp">Damp & Mould</option>
-
-                <option value="roof">Roofing</option>
-
-            </select>
-
-            <br><br>
-
-            <label>
-                Is water actively escaping?
-            </label>
-
-            <br><br>
-
-            <label>
-                Can the leak be contained?
-            </label>
-
-            <br><br>
-
-            <select name="contained">
-
-                <option value="yes">Yes</option>
-
-                <option value="no">No</option>
-
-            </select>
-
-            <br><br>
-
-            <label>
-                Is the leak affecting electrical fittings?
-            </label>
-
-            <h2>Electrical Assessment</h2>
-
-            <label>
-                Are sockets sparking?
-            </label>
-
-            <br><br>
-
-            <select name="sparking">
-
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-
-            </select>
-
-            <br><br>
-
-            <label>
-                Is there a burning smell?
-            </label>
-
-            <br><br>
-
-            <select name="burning_smell">
-
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-
-            </select>
-
-            <br><br>
-
-            <label>
-                Has power been completely lost?
-            </label>
-
-            <br><br>
-
-            <select name="power_loss">
-
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-
-            </select>
-
-            <br><br>
-
-            <select name="electrics_affected">
-
-                <option value="no">No</option>
-
-                <option value="yes">Yes</option>
-
-            </select>
-            <br><br>
-
-            <select name="active_leak">
-
-                <option value="no">No</option>
-
-                <option value="yes">Yes</option>
-
-            </select>
-
-            <br><br>
-
-            <button type="submit">
-                Diagnose Repair
-            </button>
-
-        </form>
-
-    </div>
+</div>
 
 </body>
 

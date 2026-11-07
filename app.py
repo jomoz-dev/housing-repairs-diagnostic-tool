@@ -7,14 +7,33 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
+@app.route("/assessment", methods=["POST"])
+def assessment():
+
+    repair_type = request.form["repair_type"]
+
+    if repair_type == "water_leak":
+
+        return render_template("water_leak.html")
+
+    elif repair_type == "electrical":
+
+        return render_template("electrical.html")
+
+    elif repair_type == "heating":
+
+        return render_template("heating.html")
 
 @app.route("/diagnose", methods=["POST"])
 def diagnose():
 
-    danger = request.form["danger"]
-    unsafe_property = request.form["unsafe_property"]
-    vulnerable = request.form["vulnerable"]
+    danger = request.form.get("danger", "no")
+    unsafe_property = request.form.get("unsafe_property", "no")
+    vulnerable = request.form.get("vulnerable", "no")
 
+    active_leak = request.form.get("active_leak", "no")
+    contained = request.form.get("contained", "yes")
+    electrics_affected = request.form.get("electrics_affected", "no")
     repair_type = request.form["repair_type"]
 
     active_leak = request.form["active_leak"]
