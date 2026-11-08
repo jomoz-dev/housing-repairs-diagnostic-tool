@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Assessment History</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Assessment History</h1>
+
+    <table>
+
+        <tr>
+
+            <th>Reference</th>
+
+            <th>Repair Type</th>
+
+            <th>Priority</th>
+
+            <th>Trade</th>
+
+        </tr>
+
+        {% for row in records %}
+
+        <tr>
+
+            <td>{{ row.reference }}</td>
+
+            <td>{{ row.repair_type }}</td>
+
+            <td>{{ row.priority }}</td>
+
+            <td>{{ row.trade }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/" class="button">
+
+        Back To Tool
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

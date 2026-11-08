@@ -53,3 +53,27 @@ h2 {
 select {
     width: 300px;
 }
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+
+    border: 1px solid #ddd;
+
+    padding: 10px;
+
+    text-align: left;
+}
+
+th {
+
+    background-color: #003366;
+
+    color: white;
+}

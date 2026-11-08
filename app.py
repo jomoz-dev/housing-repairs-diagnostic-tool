@@ -277,6 +277,33 @@ def diagnose():
         assessment_date=assessment_date
     )
 
+@app.route("/history")
+def history():
+
+    connection = sqlite3.connect(
+        "repairs.db"
+    )
+
+    connection.row_factory = sqlite3.Row
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT *
+        FROM assessments
+        ORDER BY id DESC
+        """
+    )
+
+    records = cursor.fetchall()
+
+    connection.close()
+
+    return render_template(
+        "history.html",
+        records=records
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
