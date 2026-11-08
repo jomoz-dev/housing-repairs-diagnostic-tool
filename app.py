@@ -26,7 +26,7 @@ def assessment():
 
 @app.route("/diagnose", methods=["POST"])
 def diagnose():
-
+    
     danger = request.form.get("danger", "no")
     unsafe_property = request.form.get("unsafe_property", "no")
     vulnerable = request.form.get("vulnerable", "no")
@@ -36,15 +36,14 @@ def diagnose():
     electrics_affected = request.form.get("electrics_affected", "no")
     repair_type = request.form["repair_type"]
 
-    active_leak = request.form["active_leak"]
-    contained = request.form["contained"]
-    electrics_affected = request.form["electrics_affected"]
-
-    sparking = request.form["sparking"]
-
-    burning_smell = request.form["burning_smell"]
-
-    power_loss = request.form["power_loss"]
+    
+    sparking = request.form.get("sparking", "no")
+    
+    burning_smell = request.form.get("burning_smell", "no")
+    
+    power_loss = request.form.get("power_loss", "no")
+    
+    
     # Emergency safety assessment
 
     if danger == "yes" or unsafe_property == "yes":
@@ -105,7 +104,7 @@ def diagnose():
             result = {
                 "priority": "Emergency",
                 "trade": "Electrician",
-                "attendance": "24 Hours",
+                "attendance": "2 - 4 Hours",
                 "message": "Potential electrical safety risk identified."
             }
 
@@ -114,7 +113,7 @@ def diagnose():
             result = {
                 "priority": "Urgent",
                 "trade": "Electrician",
-                "attendance": "48 Hours",
+                "attendance": "24 Hours",
                 "message": "Complete loss of power reported."
             }
 
@@ -135,7 +134,7 @@ def diagnose():
             result = {
                 "priority": "Emergency",
                 "trade": "Heating Engineer",
-                "attendance": "24 Hours",
+                "attendance": "4 Hours",
                 "message": "Vulnerable resident without heating."
             }
 
@@ -144,7 +143,7 @@ def diagnose():
             result = {
                 "priority": "Urgent",
                 "trade": "Heating Engineer",
-                "attendance": "48 Hours",
+                "attendance": "24 Hours",
                 "message": "Loss of heating reported."
             }
 

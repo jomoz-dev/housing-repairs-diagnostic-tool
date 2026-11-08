@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Electrical Assessment</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Electrical Assessment</h1>
+
+    <form action="/diagnose" method="POST">
+
+        <input type="hidden"
+               name="repair_type"
+               value="electrical">
+
+        <label>
+            Are sockets sparking?
+        </label>
+
+        <br><br>
+
+        <select name="sparking">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Is there a burning smell?
+        </label>
+
+        <br><br>
+
+        <select name="burning_smell">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Has power been completely lost?
+        </label>
+
+        <br><br>
+
+        <select name="power_loss">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Assess Repair
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
