@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Heating Assessment</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Heating Assessment</h1>
+
+    <form action="/diagnose" method="POST">
+
+        <input type="hidden"
+               name="repair_type"
+               value="heating">
+
+        <label>
+            Has the heating completely failed?
+        </label>
+
+        <br><br>
+
+        <select name="heating_failed">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Is hot water unavailable?
+        </label>
+
+        <br><br>
+
+        <select name="hot_water">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Is there a vulnerable resident?
+        </label>
+
+        <br><br>
+
+        <select name="vulnerable">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Assess Repair
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

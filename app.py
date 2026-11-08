@@ -31,17 +31,20 @@ def diagnose():
     unsafe_property = request.form.get("unsafe_property", "no")
     vulnerable = request.form.get("vulnerable", "no")
 
+    #Water Leak Decision Tree
     active_leak = request.form.get("active_leak", "no")
     contained = request.form.get("contained", "yes")
     electrics_affected = request.form.get("electrics_affected", "no")
     repair_type = request.form["repair_type"]
 
-    
-    sparking = request.form.get("sparking", "no")
-    
-    burning_smell = request.form.get("burning_smell", "no")
-    
+    #Electrical Decision Tree
+    sparking = request.form.get("sparking", "no") 
+    burning_smell = request.form.get("burning_smell", "no") 
     power_loss = request.form.get("power_loss", "no")
+
+    #Heating Decision Tree
+    heating_failed = request.form.get("heating_failed", "no")
+    hot_water = request.form.get("hot_water", "no")
     
     
     # Emergency safety assessment
@@ -64,7 +67,7 @@ def diagnose():
             result = {
                 "priority": "Emergency",
                 "trade": "Plumber / Electrician",
-                "attendance": "24 Hours",
+                "attendance": "2-4  Hours",
                 "message": "Water is affecting electrical fittings."
             }
 
@@ -82,7 +85,7 @@ def diagnose():
             result = {
                 "priority": "Urgent",
                 "trade": "Plumber",
-                "attendance": "48 Hours",
+                "attendance": "72 Hours",
                 "message": "Active leak reported."
             }
 
@@ -104,7 +107,7 @@ def diagnose():
             result = {
                 "priority": "Emergency",
                 "trade": "Electrician",
-                "attendance": "2 - 4 Hours",
+                "attendance": "2-4 Hours",
                 "message": "Potential electrical safety risk identified."
             }
 
@@ -129,7 +132,7 @@ def diagnose():
 
     elif repair_type == "heating":
 
-        if vulnerable == "yes":
+        if heating_failed == "yes" and vulnerable == "yes":
 
             result = {
                 "priority": "Emergency",
@@ -138,15 +141,33 @@ def diagnose():
                 "message": "Vulnerable resident without heating."
             }
 
-        else:
+        elif heating_failed == "yes":
 
             result = {
                 "priority": "Urgent",
                 "trade": "Heating Engineer",
                 "attendance": "24 Hours",
-                "message": "Loss of heating reported."
+                "message": "Heating failure reported."
             }
 
+        elif hot_water == "yes":
+
+            result = {
+                "priority": "Urgent",
+                "trade": "Heating Engineer",
+                "attendance": "24 Hours",
+                "message": "Loss of hot water reported."
+            }
+
+        else:
+
+            result = {
+                "priority": "Routine",
+                "trade": "Heating Engineer",
+                "attendance": "28 Days",
+                "message": "Heating inspection required."
+            }
+    
     # Damp & Mould
 
     elif repair_type == "damp":
