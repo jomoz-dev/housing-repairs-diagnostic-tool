@@ -27,6 +27,12 @@ def assessment():
 
         return render_template("heating.html")
 
+    elif repair_type == "damp_mould":
+
+        return render_template(
+            "damp_mould.html"
+        )
+
 @app.route("/diagnose", methods=["POST"])
 def diagnose():
     
@@ -49,7 +55,27 @@ def diagnose():
     heating_failed = request.form.get("heating_failed", "no")
     hot_water = request.form.get("hot_water", "no")
     
-    
+    #Damp & Mould Decision Tree
+    visible_mould = request.form.get(
+    "visible_mould",
+    "no"
+    )
+
+    long_term_issue = request.form.get(
+        "long_term_issue",
+        "no"
+    )
+
+    children_present = request.form.get(
+        "children_present",
+        "no"
+    )
+
+    respiratory_condition = request.form.get(
+        "respiratory_condition",
+        "no"
+    )
+
     # Emergency safety assessment
 
     if danger == "yes" or unsafe_property == "yes":
@@ -186,14 +212,57 @@ def diagnose():
     
     # Damp & Mould
 
-    elif repair_type == "damp":
+    elif repair_type == "damp_mould":
 
-        result = {
-            "priority": "Routine",
-            "trade": "Damp Specialist",
-            "attendance": "28 Days",
-            "message": "Damp and mould inspection required."
-        }
+        if (
+            visible_mould == "yes"
+            and respiratory_condition == "yes"
+        ):
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Urgent",
+                "trade": "Damp Specialist",
+                "attendance": "7 Days",
+                "message": "Visible mould and respiratory risk identified."
+            }
+
+        elif (
+            visible_mould == "yes"
+            and children_present == "yes"
+        ):
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Urgent",
+                "trade": "Damp Specialist",
+                "attendance": "7 Days",
+                "message": "Visible mould affecting vulnerable occupants."
+            }
+
+        elif (
+            visible_mould == "yes"
+            and long_term_issue == "yes"
+        ):
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Urgent",
+                "trade": "Damp Specialist",
+                "attendance": "7 Days",
+                "message": "Long-term damp and mould issue reported."
+            }
+
+        else:
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Routine",
+                "trade": "Damp Specialist",
+                "attendance": "28 Days",
+                "message": "Damp inspection required."
+            }
+
 
     # Roofing
     elif repair_type == "roof leak":
@@ -202,6 +271,7 @@ def diagnose():
             if electrics_affected == "yes":
     
                 result = {
+                    "repair_type": repair_type,
                     "priority": "Emergency",
                     "trade": "Electrician",
                     "attendance": "2-4  Hours",
@@ -211,6 +281,7 @@ def diagnose():
     else:
 
         result = {
+            "repair_type": repair_type,
             "priority": "Routine",
             "trade": "Roofer",
             "attendance": "28 Days",
@@ -275,6 +346,61 @@ def diagnose():
         result=result,
         reference=reference,
         assessment_date=assessment_date
+    )
+
+@app.route("/dashboard")
+def dashboard():
+
+    connection = sqlite3.connect(
+        "repairs.db"
+    )
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "SELECT COUNT(*) FROM assessments"
+    )
+
+    total = cursor.fetchone()[0]
+
+    cursor.execute(
+        """
+        SELECT COUNT(*)
+        FROM assessments
+        WHERE priority='Emergency'
+        """
+    )
+
+    emergency = cursor.fetchone()[0]
+
+    cursor.execute(
+        """
+        SELECT COUNT(*)
+        FROM assessments
+        WHERE priority='Urgent'
+        """
+    )
+
+    urgent = cursor.fetchone()[0]
+
+    cursor.execute(
+        """
+        SELECT COUNT(*)
+        FROM assessments
+        WHERE priority='Routine'
+        """
+    )
+
+    routine = cursor.fetchone()[0]
+
+    connection.close()
+
+    return render_template(
+        "dashboard.html",
+        total=total,
+        emergency=emergency,
+        urgent=urgent,
+        routine=routine
     )
 
 @app.route("/history")

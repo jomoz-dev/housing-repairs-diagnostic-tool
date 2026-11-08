@@ -1,0 +1,111 @@
+
+Yes / No
+
+
+
+Yes / No
+
+
+
+Yes / No
+
+
+Yes / No
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Damp & Mould Assessment</title>
+    <a href="/" class="button">
+    Back
+    </a>
+
+    <br><br>
+
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Damp & Mould Assessment</h1>
+
+    <form action="/diagnose" method="POST">
+
+        <input type="hidden"
+               name="repair_type"
+               value="damp_mould">
+
+        <label>
+            Is mould visible?
+
+        </label>
+
+        <br><br>
+
+        <select name="active_leak">
+
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+        Has the issue been present more than 28 days?
+        </label>
+
+        <br><br>
+
+        <select name="present">
+
+            <option value="yes">Yes</option>
+
+            <option value="no">No</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+        Are children under 5 living in the property?
+        </label>
+
+        <br><br>
+
+        <select name="under 5"> 
+
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+
+        </select>
+
+      
+        <label> Does anybody have respiratory conditions?
+
+        </label>
+            
+        <select name="respiratory condition">        
+        
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+          <br><br>
+
+        <button type="submit">
+            Assess Repair
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
