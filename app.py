@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import sqlite3
+
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -53,6 +55,7 @@ def diagnose():
     if danger == "yes" or unsafe_property == "yes":
 
         result = {
+            "repair_type": repair_type,
             "priority": "Emergency",
             "trade": "Emergency Contractor",
             "attendance": "Within 24 Hours",
@@ -67,6 +70,7 @@ def diagnose():
 
             result = {
                 "priority": "Emergency",
+                "repair_type": repair_type,
                 "trade": "Plumber / Electrician",
                 "attendance": "2-4  Hours",
                 "message": "Water is affecting electrical fittings."
@@ -75,6 +79,8 @@ def diagnose():
         elif active_leak == "yes" and contained == "no":
 
             result = {
+                
+                "repair_type": repair_type,
                 "priority": "Emergency",
                 "trade": "Plumber",
                 "attendance": "24 Hours",
@@ -84,6 +90,7 @@ def diagnose():
         elif active_leak == "yes":
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Urgent",
                 "trade": "Plumber",
                 "attendance": "72 Hours",
@@ -93,6 +100,7 @@ def diagnose():
         else:
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Routine",
                 "trade": "Plumber",
                 "attendance": "28 Days",
@@ -106,6 +114,7 @@ def diagnose():
         if sparking == "yes" or burning_smell == "yes":
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Emergency",
                 "trade": "Electrician",
                 "attendance": "2-4 Hours",
@@ -115,6 +124,7 @@ def diagnose():
         elif power_loss == "yes":
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Urgent",
                 "trade": "Electrician",
                 "attendance": "24 Hours",
@@ -124,6 +134,7 @@ def diagnose():
         else:
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Routine",
                 "trade": "Electrician",
                 "attendance": "28 Days",
@@ -136,6 +147,7 @@ def diagnose():
         if heating_failed == "yes" and vulnerable == "yes":
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Emergency",
                 "trade": "Heating Engineer",
                 "attendance": "4 Hours",
@@ -145,6 +157,7 @@ def diagnose():
         elif heating_failed == "yes":
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Urgent",
                 "trade": "Heating Engineer",
                 "attendance": "24 Hours",
@@ -154,6 +167,7 @@ def diagnose():
         elif hot_water == "yes":
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Urgent",
                 "trade": "Heating Engineer",
                 "attendance": "24 Hours",
@@ -163,6 +177,7 @@ def diagnose():
         else:
 
             result = {
+                "repair_type": repair_type,
                 "priority": "Routine",
                 "trade": "Heating Engineer",
                 "attendance": "28 Days",
@@ -204,12 +219,62 @@ def diagnose():
 
     reference = datetime.now().strftime(
     "HR-%Y%m%d-%H%M%S"
-)
+    )
+    print(result)
+
+    assessment_date = datetime.now().strftime(
+        "%d/%m/%Y %H:%M"
+    )
+
+    connection = sqlite3.connect(
+    "repairs.db"
+    )
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO assessments
+        (
+            reference,
+            repair_type,
+            priority,
+            trade,
+            attendance,
+            message
+        )
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            reference,
+            result["repair_type"],
+            result["priority"],
+            result["trade"],
+            result["attendance"],
+            result["message"]
+        )
+    )
+
+    connection.commit()
+
+    connection.close()
+
+    display_names = {
+    "water_leak": "Water Leak",
+    "electrical": "Electrical",
+    "heating": "Heating"
+    }
+
+    result["repair_type"] = display_names.get(
+        repair_type,
+        repair_type
+    )
 
     return render_template(
         "result.html",
         result=result,
-        reference=reference
+        reference=reference,
+        assessment_date=assessment_date
     )
 
 
