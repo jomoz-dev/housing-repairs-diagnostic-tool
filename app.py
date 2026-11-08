@@ -1,7 +1,8 @@
+from datetime import datetime
+
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
 
 @app.route("/")
 def home():
@@ -180,7 +181,18 @@ def diagnose():
         }
 
     # Roofing
+    elif repair_type == "roof leak":
 
+    
+            if electrics_affected == "yes":
+    
+                result = {
+                    "priority": "Emergency",
+                    "trade": "Electrician",
+                    "attendance": "2-4  Hours",
+                    "message": "Water is affecting electrics."
+                }
+    
     else:
 
         result = {
@@ -190,9 +202,14 @@ def diagnose():
             "message": "Roofing issue reported."
         }
 
+    reference = datetime.now().strftime(
+    "HR-%Y%m%d-%H%M%S"
+)
+
     return render_template(
         "result.html",
-        result=result
+        result=result,
+        reference=reference
     )
 
 

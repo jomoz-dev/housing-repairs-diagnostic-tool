@@ -13,7 +13,13 @@
 
     <div class="result-card">
 
-        <h1>Repair Assessment Result</h1>
+        <h2>Assessment Reference</h2>
+
+        <p>{{ reference }}</p>
+
+        <h2>Repair Type</h2>
+
+        <p>{{ result.repair_type }}</p>
 
         <h2>Priority</h2>
 
@@ -37,13 +43,16 @@
             <strong>Assessment Notes:</strong>
             {{ result.message }}
         </p>
-        <br>
 
         <a href="/" class="button">
-
             Start New Assessment
-
         </a>
+
+        <h2>Assessment Date</h2>
+
+        <p>
+            {{ reference }}
+        </p>
 
     </div>
 
