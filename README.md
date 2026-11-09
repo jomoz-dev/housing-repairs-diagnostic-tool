@@ -2,180 +2,140 @@
 
 ## Overview
 
-The Housing Repairs Diagnostic Tool is a Python-based web application designed to support customer service advisors, housing officers and repairs teams when diagnosing repair requests.
+The Housing Repairs Diagnostic Tool is a Python Flask web application for customer service advisors, housing officers and repairs teams.
 
-The application uses a structured decision tree to assess reported repairs, identify potential health and safety risks, determine repair priority and recommend the appropriate contractor trade.
+It uses guided questions and decision-tree rules to diagnose a reported repair, set a priority, recommend a contractor trade, and record the assessment for later review.
 
-This project was inspired by real-world experience working within housing repairs and neighbourhood services.
+This project comes from real-world work in housing repairs and neighbourhood services. It is also a portfolio piece for a move into business systems analysis, application support, and software development.
 
 ---
 
-## Features
+## What the current version does
 
-### Safety Assessment
+An advisor selects a repair type, answers a short set of questions, and receives:
 
-- Fire risk assessment
-- Gas leak checks
-- Electrical hazard checks
-- Vulnerable resident assessment
-- Property safety assessment
+- A unique assessment reference (`HR-YYYYMMDD-HHMMSS`)
+- Priority: Emergency, Urgent, or Routine
+- Recommended trade
+- Target attendance timescale
+- Assessment notes
 
-### Repair Diagnosis
+Each outcome is stored in SQLite. History and a dashboard summarise volume by priority and repair type.
 
-- Heating
-- Water Leaks
-- Electrical Faults
-- Damp and Mould
-- Roofing
-- Doors
-- Windows
-- Toilets
-- Communal Repairs
+### Repair workflows
 
-### Automated Recommendations
+| Repair type | Questions used | Typical trades |
+| --- | --- | --- |
+| Water leak | Active leak, contained, electrics affected | Plumber, Plumber / Electrician |
+| Electrical | Sparking, burning smell, power loss | Electrician |
+| Heating | Heating failed, hot water unavailable, vulnerable resident | Heating Engineer |
+| Damp and mould | Visible mould, issue over 28 days, children under 5, respiratory condition | Damp Specialist |
+| Roofing | Water entering property, structural damage, electrics affected | Roofer |
+| Doors and windows | Door secured, window closed, security risk | Locksmith, Joiner |
 
-- Repair Priority
-- Contractor Trade
-- Attendance Timescale
-- Emergency Escalation
+### How triage works
+
+```text
+Repair type selected
+      |
+      v
+Guided questions for that trade
+      |
+      v
+Decision-tree rules
+      |
+      v
+Priority + trade + attendance
+      |
+      v
+Result saved (SQLite) → History / Dashboard
+```
+
+Examples of the rules:
+
+- Water affecting electrics, sparking, or a burning smell → Emergency
+- Uncontained leak, heating failure with a vulnerable resident, or a security risk → Emergency
+- Visible mould with children under 5, a respiratory condition, or a long-term issue → Urgent (7 days)
+- Door that cannot be secured, or a window that cannot be closed → Urgent
+- Inspection-only reports with no high-risk answers → Routine (28 days)
+
+---
+
+## Features in this version
+
+- Repair type selection
+- Six decision-tree assessments
+- Emergency / urgent / routine classification
+- Assessment reference and timestamp
+- SQLite assessment history
+- Dashboard: totals, priority split, most common repair types
 
 ---
 
 ## Technologies
 
-### Current Version
-
 - Python
 - Flask
-- HTML
-- CSS
-
-### Planned Future Enhancements
-
-- Django
-- PostgreSQL
-- User Authentication
-- Reporting Dashboard
-- Audit Logging
-- Management Console
-- Repairs History
-- Power BI Integration
+- HTML / CSS
+- SQLite
 
 ---
 
-## Business Problem
-
-Housing organisations often rely on advisor knowledge and manual procedures to diagnose repairs.
-
-This can lead to:
-
-- Inconsistent diagnoses
-- Incorrect repair allocation
-- Increased costs
-- Repeat customer contact
-- Poor customer satisfaction
-
-The Housing Repairs Diagnostic Tool aims to standardise repair diagnosis and improve service consistency through guided decision-making.
-
----
-
-## Example Workflow
+## How to run
 
 ```text
-Repair Reported
-      |
-      v
-Safety Assessment
-      |
-      v
-Emergency Check
-      |
-      v
-Repair Diagnosis
-      |
-      v
-Trade Allocation
-      |
-      v
-Priority Assessment
-      |
-      v
-Outcome Generated
+python database.py
+python app.py
 ```
 
----
+Then open `http://127.0.0.1:5000/` in a browser.
 
-## Future Roadmap
-
-### Version 2
-
-- Full Django Application
-- Resident Self-Service Portal
-- Contractor Dashboard
-- Repair Tracking
-
-### Version 3
-
-- AI-Assisted Repairs Diagnosis
-- Natural Language Search
-- Mobile Application
-- Analytics Dashboard
+`database.py` creates the `assessments` table if it does not already exist.
 
 ---
 
-## Learning Objectives
+## Business problem
 
-This project was created to develop skills in:
+Housing organisations often rely on advisor knowledge and manual procedures to diagnose repairs. That can lead to inconsistent diagnoses, incorrect trade allocation, extra cost, repeat contact, and poor satisfaction.
 
-- Python Development
-- Web Development
-- Business Systems Analysis
-- Process Automation
-- Requirements Gathering
-- Workflow Design
-- Database Design
+This tool standardises triage so the same answers produce the same priority, trade, and timescale.
 
 ---
 
-## Future Skills to Demonstrate
-
-- Decision Tree Logic
-- Business Rules Management
-- Database Modelling
-- Software Design
-- Housing Repairs Domain Knowledge
-- User Experience Design
-- Process Mapping
-
----
-
-## Current Development Progress
+## Current development progress
 
 ### Completed
 
 - Flask application structure
-- GitHub repository setup
-- Safety assessment questions
-- Repair type selection
-- Results page
-- Emergency repair classification
-- Basic decision-tree logic
-- Responsive project structure
-
-### In Development
-
-- Water leak decision tree
-- Vulnerability assessment
-- Heating assessment workflow
-- Electrical safety workflow
+- GitHub repository
+- Repair type selection and results page
+- Decision trees for water leak, electrical, heating, damp and mould, roofing, and doors and windows
+- Emergency / urgent / routine classification
+- SQLite storage and assessment references
+- History page
+- Reporting dashboard
 
 ### Planned
 
-- SQLite database integration
-- Assessment history
-- Reporting dashboard
+- User authentication and audit logging
 - Resident self-service portal
-- Contractor management features
+- Contractor tracking
+- PostgreSQL
+- Power BI / richer analytics
+- Django rewrite (if the product needs a fuller housing application)
+
+---
+
+## Learning objectives
+
+This project is used to practise:
+
+- Python and web development
+- Business systems analysis
+- Process automation
+- Requirements gathering
+- Workflow and database design
+- Housing repairs domain knowledge
 
 ---
 
@@ -185,26 +145,9 @@ This project was created to develop skills in:
 
 Housing professional transitioning into:
 
-- Business Systems Analysis
-- Application Support
-- Process Automation
-- Software Development
-
-This project combines real-world housing repairs knowledge with software engineering principles to create a practical repair diagnosis and triage solution.
-
----
-
-## Why This Project?
-
-Many portfolio projects focus on generic examples such as calculators or to-do lists.
-
-This project is designed around a real business problem found within the housing sector:
-
-- Repairs triage
-- Risk assessment
-- Service delivery
+- Business systems analysis
+- Application support
 - Process automation
-- Decision-tree workflows
-- Business rules management
+- Software development
 
-The goal is to demonstrate both technical development skills and housing domain expertise.
+The aim is to show both technical development skill and housing repairs expertise, not a generic calculator or to-do list.

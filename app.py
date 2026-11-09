@@ -374,6 +374,16 @@ def diagnose():
                 "message": "Door cannot be secured."
             }
 
+        elif window_closed == "no":
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Urgent",
+                "trade": "Joiner",
+                "attendance": "48 Hours",
+                "message": "Window cannot be closed."
+            }
+
         else:
 
             result = {
