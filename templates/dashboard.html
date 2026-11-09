@@ -20,24 +20,23 @@
 
     <p>{{ total }}</p>
 
+ <div class="dashboard-card emergency">
     <h2>Emergency Repairs</h2>
 
-    <p>
-    {{ emergency }} 
-    ({{ emergency_percent }}%)
-    </p>
+    <p>{{ emergency }} ({{ emergency_percent }}%)</p>
+ </div>
 
+ <div class="dashboard-card urgent">
     <h2>Urgent Repairs</h2>
 
-    <p>{{ urgent }}
-        ({{ urgent_percent }}%)
-    </p>
+    <p>{{ urgent }} ({{ urgent_percent }}%)</p>
+ </div>
 
+ <div class="dashboard-card routine">
     <h2>Routine Repairs</h2>
 
-    <p>{{ routine }}
-        ({{ routine_percent }}%)
-    </p>
+    <p>{{ routine }}({{ routine_percent }}%)</p>
+ </div>
 
     <h2>Most Common Repair Types</h2>
 

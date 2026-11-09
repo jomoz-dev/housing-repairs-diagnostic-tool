@@ -546,8 +546,12 @@ def dashboard():
         total=total,
         emergency=emergency,
         urgent=urgent,
-        routine=routine,
-        repair_stats=formatted_stats
+        routine=routine,        
+        repair_stats=formatted_stats,
+        emergency_percent=emergency_percent,
+        urgent_percent=urgent_percent,
+        routine_percent=routine_percent,
+
     )
 
 
