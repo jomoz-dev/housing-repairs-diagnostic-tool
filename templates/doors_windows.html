@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Doors and Windows Assessment</title>
+    <a href="/" class="button">
+    Back
+    </a>
+
+    <br><br>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Doors and Windows Assessment</h1>
+    
+    <form action="/diagnose" method="POST">
+
+        <input type="hidden"
+               name="repair_type"
+               value="doors_windows">
+
+        <label>
+            Can the door be secured?
+        </label>
+
+        <br><br>
+
+        <select name="secured">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Can the window be closed
+        </label>
+
+        <br><br>
+
+        <select name="can_close">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Is there a security risk?
+        </label>
+
+        <br><br>
+
+        <select name="security_risk">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+            
+        </select>
+
+        <br><br>
+
+        <label>
+            Is the property accessible?
+        </label>
+
+        <br><br>
+
+        <select name="accessible">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Assess Repair
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

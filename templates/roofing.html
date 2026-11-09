@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Roofing Assessment</title>
+    <a href="/" class="button">
+    Back
+    </a>
+
+    <br><br>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Roofing Assessment</h1>
+    
+    <form action="/diagnose" method="POST">
+
+        <input type="hidden"
+               name="repair_type"
+               value="roofing">
+
+        <label>
+            Is water entering the property??
+        </label>
+
+        <br><br>
+
+        <select name="water_entry">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Is structural damage visible?
+        </label>
+
+        <br><br>
+
+        <select name="structural_damage">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Are electrical fittings affected?
+        </label>
+
+        <br><br>
+
+        <select name="roof_electrics">
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Assess Repair
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

@@ -33,6 +33,18 @@ def assessment():
             "damp_mould.html"
         )
 
+    elif repair_type == "roofing":
+
+        return render_template(
+            "roofing.html"
+        )
+
+    elif repair_type == "doors_windows":
+
+        return render_template(
+            "doors_windows.html"
+        )
+    
 @app.route("/diagnose", methods=["POST"])
 def diagnose():
     
@@ -61,6 +73,21 @@ def diagnose():
     "no"
     )
 
+    #Roofing Decision Tree
+    water_entry = request.form.get(
+    "water_entry",
+    "no"
+    )
+
+    structural_damage = request.form.get(
+        "structural_damage",
+        "no"
+    )
+
+    roof_electrics = request.form.get(
+        "roof_electrics",
+        "no"
+    )
     long_term_issue = request.form.get(
         "long_term_issue",
         "no"
@@ -76,6 +103,23 @@ def diagnose():
         "no"
     )
 
+    #Doors & Windows
+    security_risk = request.form.get(
+    "security_risk",
+    "no"
+    )
+
+    door_secured = request.form.get(
+        "door_secured",
+        "yes"
+    )
+
+    window_closed = request.form.get(
+        "window_closed",
+        "yes"
+    )
+
+#Adding Logic
     # Emergency safety assessment
 
     if danger == "yes" or unsafe_property == "yes":
@@ -265,28 +309,80 @@ def diagnose():
 
 
     # Roofing
-    elif repair_type == "roof leak":
+    elif repair_type == "roofing":
 
-    
-            if electrics_affected == "yes":
-    
-                result = {
-                    "repair_type": repair_type,
-                    "priority": "Emergency",
-                    "trade": "Electrician",
-                    "attendance": "2-4  Hours",
-                    "message": "Water is affecting electrics."
-                }
-    
-    else:
+        if water_entry == "yes" and roof_electrics == "yes":
 
-        result = {
-            "repair_type": repair_type,
-            "priority": "Routine",
-            "trade": "Roofer",
-            "attendance": "28 Days",
-            "message": "Roofing issue reported."
-        }
+            result = {
+                "repair_type": repair_type,
+                "priority": "Emergency",
+                "trade": "Roofer",
+                "attendance": "2-4 Hours",
+                "message": "Water ingress affecting electrics."
+            }
+
+        elif water_entry == "yes":
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Urgent",
+                "trade": "Roofer",
+                "attendance": "7 Days",
+                "message": "Water entering property."
+            }
+
+        elif structural_damage == "yes":
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Urgent",
+                "trade": "Roofer",
+                "attendance": "7 Days",
+                "message": "Structural roof damage reported."
+            }
+
+        else:
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Routine",
+                "trade": "Roofer",
+                "attendance": "28 Days",
+                "message": "Roof inspection required."
+            }
+
+    # Doors and Windows
+    elif repair_type == "doors_windows":
+
+        if security_risk == "yes":
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Emergency",
+                "trade": "Locksmith",
+                "attendance": "24 Hours",
+                "message": "Property security compromised."
+            }
+
+        elif door_secured == "no":
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Urgent",
+                "trade": "Locksmith",
+                "attendance": "48 Hours",
+                "message": "Door cannot be secured."
+            }
+
+        else:
+
+            result = {
+                "repair_type": repair_type,
+                "priority": "Routine",
+                "trade": "Joiner",
+                "attendance": "28 Days",
+                "message": "Minor door or window repair required."
+            }
 
     reference = datetime.now().strftime(
     "HR-%Y%m%d-%H%M%S"
@@ -331,14 +427,16 @@ def diagnose():
     connection.close()
 
     display_names = {
-    "water_leak": "Water Leak",
-    "electrical": "Electrical",
-    "heating": "Heating"
+        "water_leak": "Water Leak",
+        "electrical": "Electrical",
+        "heating": "Heating",
+        "damp_mould": "Damp & Mould",
+        "roofing": "Roofing",
     }
 
     result["repair_type"] = display_names.get(
-        repair_type,
-        repair_type
+        result["repair_type"],
+        result["repair_type"]
     )
 
     return render_template(
