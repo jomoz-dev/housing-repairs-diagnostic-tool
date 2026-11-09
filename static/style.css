@@ -77,3 +77,30 @@ th {
 
     color: white;
 }
+
+
+.dashboard-card {
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+
+    color: white;
+}
+
+.emergency {
+
+    background-color: #d9534f;
+}
+
+.urgent {
+
+    background-color: #f0ad4e;
+}
+
+.routine {
+
+    background-color: #5cb85c;
+}

@@ -432,6 +432,7 @@ def diagnose():
         "heating": "Heating",
         "damp_mould": "Damp & Mould",
         "roofing": "Roofing",
+        "doors_windows": "Doors & Windows"
     }
 
     result["repair_type"] = display_names.get(
@@ -449,6 +450,16 @@ def diagnose():
 @app.route("/dashboard")
 def dashboard():
 
+    display_names = {
+                "water_leak": "Water Leak",
+                "electrical": "Electrical",
+                "heating": "Heating",
+                "damp_mould": "Damp & Mould",
+                "roofing": "Roofing",
+                "doors_windows": "Doors & Windows"
+            }
+    
+    
     connection = sqlite3.connect(
         "repairs.db"
     )
@@ -491,6 +502,43 @@ def dashboard():
 
     routine = cursor.fetchone()[0]
 
+    emergency_percent = round(
+        emergency / total * 100, 1
+    ) if total else 0
+
+    urgent_percent = round(
+        urgent / total * 100, 1
+    ) if total else 0
+
+    routine_percent = round(
+        routine / total * 100, 1
+    ) if total else 0
+
+
+    cursor.execute("""
+        SELECT repair_type,
+            COUNT(*) AS total
+        FROM assessments
+        GROUP BY repair_type
+        ORDER BY total DESC
+    """)
+
+    repair_stats = cursor.fetchall()
+
+    formatted_stats = []
+
+    for repair_type, total_count in repair_stats:
+
+        formatted_stats.append(
+            (
+                display_names.get(
+                    repair_type,
+                    repair_type
+                ),
+                total_count
+            )
+        )
+
     connection.close()
 
     return render_template(
@@ -498,8 +546,10 @@ def dashboard():
         total=total,
         emergency=emergency,
         urgent=urgent,
-        routine=routine
+        routine=routine,
+        repair_stats=formatted_stats
     )
+
 
 @app.route("/history")
 def history():

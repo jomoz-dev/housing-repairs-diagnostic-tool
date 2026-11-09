@@ -22,16 +22,48 @@
 
     <h2>Emergency Repairs</h2>
 
-    <p>{{ emergency }}</p>
+    <p>
+    {{ emergency }} 
+    ({{ emergency_percent }}%)
+    </p>
 
     <h2>Urgent Repairs</h2>
 
-    <p>{{ urgent }}</p>
+    <p>{{ urgent }}
+        ({{ urgent_percent }}%)
+    </p>
 
     <h2>Routine Repairs</h2>
 
-    <p>{{ routine }}</p>
+    <p>{{ routine }}
+        ({{ routine_percent }}%)
+    </p>
 
+    <h2>Most Common Repair Types</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Repair Type</th>
+
+            <th>Total</th>
+
+        </tr>
+
+        {% for row in repair_stats %}
+
+        <tr>
+
+            <td>{{ row[0] }}</td>
+
+            <td>{{ row[1] }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
     <br>
 
     <a href="/" class="button">
@@ -39,6 +71,7 @@
     </a>
 
 </div>
+
 
 </body>
 
