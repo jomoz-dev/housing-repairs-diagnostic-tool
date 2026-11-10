@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Search Result</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Assessment Result</h1>
+
+    {% if result %}
+
+        <h2>Reference</h2>
+
+        <p>{{ result[1] }}</p>
+
+        <h2>Repair Type</h2>
+
+        <p>{{ result[2] }}</p>
+
+        <h2>Priority</h2>
+
+        <p>{{ result[3] }}</p>
+
+        <h2>Trade</h2>
+
+        <p>{{ result[4] }}</p>
+
+        <h2>Attendance</h2>
+
+        <p>{{ result[5] }}</p>
+
+        <h2>Notes</h2>
+
+        <p>{{ result[6] }}</p>
+
+    {% else %}
+
+        <h2>No assessment found.</h2>
+
+    {% endif %}
+
+    <a href="/search">
+
+        <button>
+
+            Search Again
+
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

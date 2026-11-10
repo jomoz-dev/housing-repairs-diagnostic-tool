@@ -593,5 +593,77 @@ def history():
         records=records
     )
 
+#Search route
+@app.route("/search", methods=["GET", "POST"])
+def search():
+
+    if request.method == "POST":
+
+        reference = request.form["reference"]
+
+        conn = sqlite3.connect(
+            "repairs.db"
+        )
+
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM assessments
+            WHERE reference = ?
+            """,
+            (reference,)
+        )
+
+        result = cursor.fetchone()
+
+        conn.close()
+
+        return render_template(
+            "search_result.html",
+            result=result
+        )
+
+    return render_template(
+        "search.html"
+    )
+
+@app.route("/search_result", methods=["GET", "POST"])
+def search_():
+
+    if request.method == "POST":
+
+        reference = request.form["reference"]
+
+        connection = sqlite3.connect(
+            "repairs.db"
+        )
+
+        cursor = connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM assessments
+            WHERE reference = ?
+            """,
+            (reference,)
+        )
+
+        result = cursor.fetchone()
+
+        connection.close()
+
+        return render_template(
+            "search_result.html",
+            result=result
+        )
+
+    return render_template(
+        "search_result.html"
+    )
+
+
 if __name__ == "__main__":
     app.run(debug=True)
