@@ -1,0 +1,70 @@
+ID,Reference,Repair Type,Priority,Trade,Attendance,Notes,Assessment Date
+1,HR-20261108-114909,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+2,HR-20261108-114931,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+3,HR-20261108-115924,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+4,HR-20261108-115936,electrical,Routine,Electrician,28 Days,Electrical inspection required.
+5,HR-20261108-115947,heating,Routine,Heating Engineer,28 Days,Heating inspection required.
+6,HR-20261108-120941,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+7,HR-20261108-121121,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+8,HR-20261108-121218,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+9,HR-20261108-121224,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+10,HR-20261108-121400,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+11,HR-20261108-121408,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+12,HR-20261108-121434,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+13,HR-20261108-121439,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+14,HR-20261108-121445,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+15,HR-20261108-121556,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+16,HR-20261108-121607,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+17,HR-20261108-121654,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+18,HR-20261108-121738,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+19,HR-20261108-121755,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+20,HR-20261108-121801,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+21,HR-20261108-121847,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+22,HR-20261108-122143,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+23,HR-20261108-122149,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+24,HR-20261108-122235,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+25,HR-20261108-122240,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+26,HR-20261108-123854,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+27,HR-20261108-124129,water_leak,Emergency,Plumber,24 Hours,Active leak cannot be contained.
+28,HR-20261108-135605,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+29,HR-20261108-135620,electrical,Routine,Electrician,28 Days,Electrical inspection required.
+30,HR-20261108-135628,heating,Routine,Heating Engineer,28 Days,Heating inspection required.
+31,HR-20261108-140044,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+32,HR-20261108-140722,water_leak,Urgent,Plumber,72 Hours,Active leak reported.
+33,HR-20261108-140753,water_leak,Urgent,Plumber,72 Hours,Active leak reported.
+34,HR-20261108-140801,water_leak,Urgent,Plumber,72 Hours,Active leak reported.
+35,HR-20261108-140825,water_leak,Urgent,Plumber,72 Hours,Active leak reported.
+36,HR-20261108-140932,water_leak,Urgent,Plumber,72 Hours,Active leak reported.
+37,HR-20261108-141221,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+38,HR-20261108-141252,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+39,HR-20261108-141317,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+40,HR-20261108-145232,damp_mould,Routine,Damp Specialist,28 Days,Damp inspection required.
+41,HR-20261108-185733,damp_mould,Routine,Damp Specialist,28 Days,Damp inspection required.
+42,HR-20261108-185825,damp_mould,Routine,Damp Specialist,28 Days,Damp inspection required.
+43,HR-20261108-194426,roofing,Routine,Roofer,28 Days,Roof inspection required.
+44,HR-20261108-194702,roofing,Routine,Roofer,7 Days,Water entering property.
+45,HR-20261108-194719,roofing,Routine,Roofer,7 Days,Water entering property.
+46,HR-20261108-194727,roofing,Routine,Roofer,7 Days,Water entering property.
+47,HR-20261108-194754,roofing,Routine,Roofer,7 Days,Water entering property.
+48,HR-20261108-194807,roofing,Routine,Roofer,7 Days,Water entering property.
+49,HR-20261108-194853,roofing,Routine,Roofer,7 Days,Water entering property.
+50,HR-20261108-195037,roofing,Routine,Roofer,28 Days,Roof inspection required.
+51,HR-20261108-195507,roofing,Routine,Roofer,28 Days,Roof inspection required.
+52,HR-20261108-195537,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+53,HR-20261108-195622,roofing,Routine,Roofer,28 Days,Roof inspection required.
+54,HR-20261108-195648,roofing,Emergency,Roofer,24 Hours,Water ingress affecting electrics.
+55,HR-20261108-195803,roofing,Emergency,Roofer,2-4 Hours,Water ingress affecting electrics.
+56,HR-20261109-000254,doors_windows,Routine,Joiner,28 Days,Minor door or window repair required.
+57,HR-20261109-000350,doors_windows,Emergency,Locksmith,24 Hours,Property security compromised.
+58,HR-20261109-001223,water_leak,Routine,Plumber,28 Days,Leak investigation required.
+59,HR-20261109-001506,doors_windows,Emergency,Locksmith,24 Hours,Property security compromised.
+60,HR-20261109-003315,doors_windows,Routine,Joiner,28 Days,Minor door or window repair required.
+61,HR-20261109-003347,doors_windows,Emergency,Locksmith,24 Hours,Property security compromised.
+62,HR-20261109-020735,damp_mould,Urgent,Damp Specialist,7 Days,Visible mould and respiratory risk identified.
+63,HR-20261109-020735,damp_mould,Routine,Damp Specialist,28 Days,Damp inspection required.
+64,HR-20261109-020735,doors_windows,Emergency,Locksmith,24 Hours,Property security compromised.
+65,HR-20261109-020735,doors_windows,Urgent,Joiner,48 Hours,Window cannot be closed.
+66,HR-20261109-020735,doors_windows,Urgent,Locksmith,48 Hours,Door cannot be secured.
+67,HR-20261110-055548,water_leak,Urgent,Plumber,72 Hours,Active leak reported.
+68,HR-20261111-033432,damp_mould,Routine,Damp Specialist,28 Days,Damp inspection required.
+69,HR-20261111-040210,water_leak,Routine,Plumber,28 Days,Leak investigation required.

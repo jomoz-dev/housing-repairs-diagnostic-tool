@@ -5,9 +5,12 @@ import sqlite3
 import csv
 
 from flask import Flask, render_template, request  # type: ignore[reportMissingImports]
+from flask import send_file
+
 
 app = Flask(__name__)
 
+#Homepage Route
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -46,7 +49,8 @@ def assessment():
         return render_template(
             "doors_windows.html"
         )
-    
+
+#Diagnose Route    
 @app.route("/diagnose", methods=["POST"])
 def diagnose():
     
@@ -459,6 +463,7 @@ def diagnose():
         assessment_date=assessment_date
     )
 
+#Dashboard Route
 @app.route("/dashboard")
 def dashboard():
 
@@ -566,7 +571,55 @@ def dashboard():
 
     )
 
+#Export Route
+@app.route("/export")
+def export():
 
+    connection = sqlite3.connect(
+        "repairs.db"
+    )
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM assessments
+    """)
+
+    records = cursor.fetchall()
+
+    connection.close()
+
+    with open(
+        "assessments.csv",
+        "w",
+        newline=""
+    ) as file:
+
+        writer = csv.writer(file)
+
+        writer.writerow([
+            "ID",
+            "Reference",
+            "Repair Type",
+            "Priority",
+            "Trade",
+            "Attendance",
+            "Notes",
+            "Assessment Date"
+        ])
+
+        writer.writerows(records)
+
+    return send_file(
+        "assessments.csv",
+        as_attachment=True
+    )
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+#History Route
 @app.route("/history")
 def history():
 
@@ -631,6 +684,7 @@ def search():
         "search.html"
     )
 
+#Search Result Route
 @app.route("/search_result", methods=["GET", "POST"])
 def search_():
 
@@ -667,5 +721,3 @@ def search_():
     )
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
