@@ -23,7 +23,18 @@
 
         <h2>Repair Type</h2>
 
-        <p>{{ result[2] }}</p>
+        {% set repair_names = {
+
+            "water_leak": "Water Leak",
+            "electrical": "Electrical",
+            "heating": "Heating",
+            "roofing": "Roofing",
+            "damp_mould": "Damp & Mould",
+            "doors_windows": "Doors & Windows"
+
+        } %}
+
+        <p>{{ repair_names.get(result[2], result[2]) }}</p>
 
         <h2>Priority</h2>
 
