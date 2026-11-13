@@ -655,7 +655,25 @@ def history():
         ""
     )
 
-    if priority:
+    repair_type = request.args.get(
+        "repair_type",
+        ""
+    )
+
+    if priority and repair_type:
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM assessments
+            WHERE priority = ?
+            AND repair_type = ?
+            ORDER BY id DESC
+            """,
+            (priority, repair_type)
+        )
+
+    elif priority:
 
         cursor.execute(
             """
@@ -667,6 +685,18 @@ def history():
             (priority,)
         )
 
+    elif repair_type:
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM assessments
+            WHERE repair_type = ?
+            ORDER BY id DESC
+            """,
+            (repair_type,)
+        )
+
     else:
 
         cursor.execute(
@@ -676,7 +706,6 @@ def history():
             ORDER BY id DESC
             """
         )
-
     records = cursor.fetchall()
 
     connection.close()
