@@ -15,6 +15,32 @@
 <div class="result-card">
 
     <h1>Assessment History</h1>
+    
+    <form method="GET" action="/history">
+
+    <select name="priority">
+
+        <option value="">
+            All Priorities
+        </option>
+
+        <option value="Emergency">
+            Emergency
+        </option>
+
+        <option value="Urgent">
+            Urgent
+        </option>
+
+        <option value="Routine">
+            Routine
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Filter
+    </button>
 
     <table>
 
@@ -64,6 +90,11 @@
         Back To Tool
 
     </a>
+
+    
+    
+</form>
+
 
 </div>
 
