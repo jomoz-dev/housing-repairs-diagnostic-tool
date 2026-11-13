@@ -95,6 +95,12 @@ Then open `http://127.0.0.1:5000/` in a browser.
 
 `database.py` creates the `assessments` table if it does not already exist.
 
+Run the business-rule tests with:
+
+```text
+python -m pytest
+```
+
 ---
 
 ## Business problem
