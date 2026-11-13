@@ -104,3 +104,50 @@ th {
 
     background-color: #5cb85c;
 }
+
+.nav-links {
+    margin-bottom: 20px;
+}
+
+.nav-links .button {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.chart-label {
+    width: 110px;
+    font-size: 14px;
+    color: #003366;
+    font-weight: bold;
+}
+
+.chart-track {
+    flex: 1;
+    height: 16px;
+    background: #e6ebf0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.chart-bar {
+    height: 16px;
+    min-width: 0;
+}
+
+.chart-bar.repair {
+    background-color: #003366;
+}
+
+.chart-value {
+    width: 90px;
+    font-size: 13px;
+    text-align: right;
+}

@@ -35,10 +35,56 @@
  <div class="dashboard-card routine">
     <h2>Routine Repairs</h2>
 
-    <p>{{ routine }}({{ routine_percent }}%)</p>
+    <p>{{ routine }} ({{ routine_percent }}%)</p>
  </div>
 
+    <h2>Priority split</h2>
+
+    <div class="chart-row">
+        <span class="chart-label">Emergency</span>
+        <div class="chart-track">
+            <div class="chart-bar emergency"
+                 style="width: {{ emergency_percent }}%;">
+            </div>
+        </div>
+        <span class="chart-value">{{ emergency_percent }}%</span>
+    </div>
+
+    <div class="chart-row">
+        <span class="chart-label">Urgent</span>
+        <div class="chart-track">
+            <div class="chart-bar urgent"
+                 style="width: {{ urgent_percent }}%;">
+            </div>
+        </div>
+        <span class="chart-value">{{ urgent_percent }}%</span>
+    </div>
+
+    <div class="chart-row">
+        <span class="chart-label">Routine</span>
+        <div class="chart-track">
+            <div class="chart-bar routine"
+                 style="width: {{ routine_percent }}%;">
+            </div>
+        </div>
+        <span class="chart-value">{{ routine_percent }}%</span>
+    </div>
+
     <h2>Most Common Repair Types</h2>
+
+    {% for row in repair_stats %}
+
+    <div class="chart-row">
+        <span class="chart-label">{{ row.name }}</span>
+        <div class="chart-track">
+            <div class="chart-bar repair"
+                 style="width: {{ row.width }}%;">
+            </div>
+        </div>
+        <span class="chart-value">{{ row.count }} ({{ row.percent }}%)</span>
+    </div>
+
+    {% endfor %}
 
     <table>
 
@@ -54,9 +100,9 @@
 
         <tr>
 
-            <td>{{ row[0] }}</td>
+            <td>{{ row.name }}</td>
 
-            <td>{{ row[1] }}</td>
+            <td>{{ row.count }}</td>
 
         </tr>
 
@@ -64,6 +110,10 @@
 
     </table>
     <br>
+
+    <a href="/history" class="button">
+        History
+    </a>
 
     <a href="/" class="button">
         Back To Tool

@@ -21,9 +21,18 @@ CREATE TABLE IF NOT EXISTS assessments (
 
     attendance TEXT,
 
-    message TEXT
+    message TEXT,
+
+    assessment_date TEXT
 )
 """)
+
+try:
+    cursor.execute(
+        "ALTER TABLE assessments ADD COLUMN assessment_date TEXT"
+    )
+except sqlite3.OperationalError:
+    pass
 
 connection.commit()
 

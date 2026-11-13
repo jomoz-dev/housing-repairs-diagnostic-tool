@@ -424,9 +424,10 @@ def diagnose():
             priority,
             trade,
             attendance,
-            message
+            message,
+            assessment_date
         )
-        VALUES (?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
         (
             reference,
@@ -434,7 +435,8 @@ def diagnose():
             result["priority"],
             result["trade"],
             result["attendance"],
-            result["message"]
+            result["message"],
+            assessment_date
         )
     )
 
@@ -544,17 +546,34 @@ def dashboard():
 
     formatted_stats = []
 
+    max_repair_count = 0
+
     for repair_type, total_count in repair_stats:
 
+        if total_count > max_repair_count:
+            max_repair_count = total_count
+
         formatted_stats.append(
-            (
-                display_names.get(
+            {
+                "name": display_names.get(
                     repair_type,
                     repair_type
                 ),
-                total_count
-            )
+                "count": total_count,
+                "percent": round(
+                    total_count / total * 100, 1
+                ) if total else 0,
+                "width": round(
+                    total_count / max_repair_count * 100, 1
+                ) if max_repair_count else 0,
+            }
         )
+
+    # Widths depend on the largest group; recalculate now the max is known.
+    for row in formatted_stats:
+        row["width"] = round(
+            row["count"] / max_repair_count * 100, 1
+        ) if max_repair_count else 0
 
     connection.close()
 
@@ -563,12 +582,11 @@ def dashboard():
         total=total,
         emergency=emergency,
         urgent=urgent,
-        routine=routine,        
+        routine=routine,
         repair_stats=formatted_stats,
         emergency_percent=emergency_percent,
         urgent_percent=urgent_percent,
         routine_percent=routine_percent,
-
     )
 
 #Export Route

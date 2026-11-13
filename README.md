@@ -67,8 +67,11 @@ Examples of the rules:
 - Six decision-tree assessments
 - Emergency / urgent / routine classification
 - Assessment reference and timestamp
-- SQLite assessment history
-- Dashboard: totals, priority split, most common repair types
+- SQLite assessment history with assessment date
+- Dashboard: totals, priority split, most common repair types, and bar charts
+- Search by assessment reference
+- History filters by priority and repair type
+- CSV export of assessment records
 
 ---
 
@@ -112,7 +115,9 @@ This tool standardises triage so the same answers produce the same priority, tra
 - Decision trees for water leak, electrical, heating, damp and mould, roofing, and doors and windows
 - Emergency / urgent / routine classification
 - SQLite storage and assessment references
-- History page
+- History page with priority and repair-type filters
+- Search by reference
+- CSV export
 - Reporting dashboard
 
 ### Planned

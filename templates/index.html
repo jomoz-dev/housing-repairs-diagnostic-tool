@@ -4,15 +4,6 @@
 <head>
 
     <title>Housing Repairs Diagnostic Tool</title>
-        <a href="/dashboard" class="button">
-        Dashboard
-        </a>
-
-        <a href="/history" class="button">
-        View History
-        </a>
-
-
 
     <link rel="stylesheet" href="/static/style.css">
 
@@ -23,6 +14,13 @@
 <div class="result-card">
 
     <h1>Housing Repairs Diagnostic Tool</h1>
+
+    <div class="nav-links">
+        <a href="/dashboard" class="button">Dashboard</a>
+        <a href="/history" class="button">History</a>
+        <a href="/search" class="button">Search</a>
+        <a href="/export" class="button">Export CSV</a>
+    </div>
 
     <p>
         Select the repair type to begin the assessment.
@@ -44,31 +42,15 @@
 
             <option value="doors_windows">Doors & Windows</option>
 
-        </select>    
+        </select>
+
+        <br><br>
 
         <button type="submit">
             Continue
         </button>
 
     </form>
-
-    <br></br>
-        <a href="/search">
-
-        <button>Search</button>
-        </a>
-
-
-        <a href="/export">
-
-        <button>
-
-            Export CSV
-
-        </button>
-
-        </a>
-
 
 </div>
 

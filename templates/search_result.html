@@ -52,6 +52,14 @@
 
         <p>{{ result[6] }}</p>
 
+        {% if result|length > 7 and result[7] %}
+
+        <h2>Assessment Date</h2>
+
+        <p>{{ result[7] }}</p>
+
+        {% endif %}
+
     {% else %}
 
         <h2>No assessment found.</h2>

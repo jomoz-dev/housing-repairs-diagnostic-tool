@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.pyc
+repairs.db
+assessments.csv
+.venv/
+venv/
