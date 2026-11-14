@@ -124,6 +124,8 @@
 
             <th>Assessment Date</th>
 
+            <th></th>
+
         </tr>
 
         {% for row in records %}
@@ -139,6 +141,12 @@
             <td>{{ row.trade }}</td>
 
             <td>{{ row.assessment_date }}</td>
+
+            <td>
+                <a href="{{ url_for('edit_notes', assessment_id=row.id) }}">
+                    Edit notes
+                </a>
+            </td>
 
         </tr>
 

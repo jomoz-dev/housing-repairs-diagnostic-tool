@@ -72,6 +72,7 @@ Examples of the rules:
 - Search by assessment reference
 - History filters by priority, repair type and date range
 - CSV export of assessment records
+- Edit assessment notes without re-running diagnosis
 
 ---
 
@@ -125,6 +126,7 @@ This tool standardises triage so the same answers produce the same priority, tra
 - Search by reference
 - CSV export
 - Reporting dashboard
+- Edit assessment notes
 
 ### Planned
 

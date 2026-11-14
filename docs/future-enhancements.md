@@ -10,9 +10,9 @@
 
 ### Case Management
 
-- Edit Assessment Records
+- Edit Assessment Records (notes can be updated; diagnosis fields stay as assessed)
 - Delete Assessment Records
-- Assessment Notes Updates
+- Assessment Notes Updates (done)
 
 ### Reporting
 

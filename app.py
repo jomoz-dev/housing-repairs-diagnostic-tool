@@ -5,7 +5,7 @@ import sqlite3
 import csv
 
 from flask import Flask, render_template, request  # type: ignore[reportMissingImports]
-from flask import send_file
+from flask import abort, redirect, send_file, url_for
 
 from diagnosis import diagnose_repair
 
@@ -132,6 +132,8 @@ def diagnose():
         )
     )
 
+    assessment_id = cursor.lastrowid
+
     connection.commit()
 
     connection.close()
@@ -154,7 +156,8 @@ def diagnose():
         "result.html",
         result=result,
         reference=reference,
-        assessment_date=assessment_date
+        assessment_date=assessment_date,
+        assessment_id=assessment_id
     )
 
 #Dashboard Route
@@ -456,6 +459,74 @@ def search():
         "search.html"
     )
 
+
+def get_assessment(assessment_id):
+    connection = sqlite3.connect(
+        "repairs.db"
+    )
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(
+        """
+        SELECT *
+        FROM assessments
+        WHERE id = ?
+        """,
+        (assessment_id,)
+    )
+    record = cursor.fetchone()
+    connection.close()
+    return record
+
+
+@app.route(
+    "/assessment/<int:assessment_id>/notes",
+    methods=["GET", "POST"]
+)
+def edit_notes(assessment_id):
+
+    record = get_assessment(assessment_id)
+
+    if record is None:
+        abort(404)
+
+    if request.method == "POST":
+        notes = request.form.get("message", "").strip()
+
+        connection = sqlite3.connect(
+            "repairs.db"
+        )
+        cursor = connection.cursor()
+        cursor.execute(
+            """
+            UPDATE assessments
+            SET message = ?
+            WHERE id = ?
+            """,
+            (notes, assessment_id)
+        )
+        connection.commit()
+        connection.close()
+
+        return redirect(url_for("history"))
+
+    display_names = {
+        "water_leak": "Water Leak",
+        "electrical": "Electrical",
+        "heating": "Heating",
+        "damp_mould": "Damp & Mould",
+        "roofing": "Roofing",
+        "doors_windows": "Doors & Windows"
+    }
+
+    return render_template(
+        "edit_notes.html",
+        record=record,
+        repair_type_label=display_names.get(
+            record["repair_type"],
+            record["repair_type"]
+        )
+    )
 
 
 if __name__ == "__main__":

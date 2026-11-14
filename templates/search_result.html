@@ -60,6 +60,13 @@
 
         {% endif %}
 
+        <a href="{{ url_for('edit_notes', assessment_id=result[0]) }}"
+           class="button">
+            Edit notes
+        </a>
+
+        <br><br>
+
     {% else %}
 
         <h2>No assessment found.</h2>

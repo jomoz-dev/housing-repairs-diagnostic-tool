@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Assessment Notes</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Edit Assessment Notes</h1>
+
+    <p>
+        <strong>Reference:</strong>
+        {{ record.reference }}
+    </p>
+
+    <p>
+        <strong>Repair type:</strong>
+        {{ repair_type_label }}
+    </p>
+
+    <p>
+        <strong>Priority:</strong>
+        {{ record.priority }}
+    </p>
+
+    <p>
+        <strong>Trade:</strong>
+        {{ record.trade }}
+    </p>
+
+    <p>
+        Priority, trade and attendance stay as diagnosed.
+        Update the notes if the record needs a correction or extra detail.
+    </p>
+
+    <form method="POST">
+
+        <label for="message">Assessment notes</label>
+
+        <br><br>
+
+        <textarea id="message"
+                  name="message"
+                  rows="6">{{ record.message }}</textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Save Notes
+        </button>
+
+        <a href="/history" class="button">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

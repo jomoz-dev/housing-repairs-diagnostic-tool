@@ -44,6 +44,14 @@
             {{ result.message }}
         </p>
 
+        {% if assessment_id %}
+        <a href="{{ url_for('edit_notes', assessment_id=assessment_id) }}"
+           class="button">
+            Edit notes
+        </a>
+        <br><br>
+        {% endif %}
+
         <a href="/history" class="button">
 
         View History
