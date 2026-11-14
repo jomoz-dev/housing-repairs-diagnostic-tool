@@ -73,6 +73,7 @@ Examples of the rules:
 - History filters by priority, repair type and date range
 - CSV export of assessment records
 - Edit assessment notes without re-running diagnosis
+- Delete an assessment after a confirmation step
 
 ---
 
@@ -127,6 +128,7 @@ This tool standardises triage so the same answers produce the same priority, tra
 - CSV export
 - Reporting dashboard
 - Edit assessment notes
+- Delete assessments with confirmation
 
 ### Planned
 

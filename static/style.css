@@ -24,6 +24,17 @@ button,
     cursor: pointer;
 }
 
+.button-danger {
+    background-color: #d9534f;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
 .result-card {
     background: white;
     padding: 30px;

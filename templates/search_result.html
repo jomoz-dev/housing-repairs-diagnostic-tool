@@ -65,6 +65,11 @@
             Edit notes
         </a>
 
+        <a href="{{ url_for('delete_assessment', assessment_id=result[0]) }}"
+           class="button-danger">
+            Delete
+        </a>
+
         <br><br>
 
     {% else %}

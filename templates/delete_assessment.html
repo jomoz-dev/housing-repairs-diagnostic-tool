@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Delete Assessment</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Delete Assessment</h1>
+
+    <p>
+        This will permanently remove the assessment from history,
+        search and reports. This cannot be undone.
+    </p>
+
+    <p>
+        <strong>Reference:</strong>
+        {{ record.reference }}
+    </p>
+
+    <p>
+        <strong>Repair type:</strong>
+        {{ repair_type_label }}
+    </p>
+
+    <p>
+        <strong>Priority:</strong>
+        {{ record.priority }}
+    </p>
+
+    <p>
+        <strong>Notes:</strong>
+        {{ record.message }}
+    </p>
+
+    <form method="POST">
+
+        <input type="hidden" name="confirm" value="yes">
+
+        <button type="submit" class="button-danger">
+            Delete Assessment
+        </button>
+
+        <a href="/history" class="button">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

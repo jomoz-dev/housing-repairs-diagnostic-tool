@@ -11,7 +11,7 @@
 ### Case Management
 
 - Edit Assessment Records (notes can be updated; diagnosis fields stay as assessed)
-- Delete Assessment Records
+- Delete Assessment Records (done — confirmation page, then remove from SQLite)
 - Assessment Notes Updates (done)
 
 ### Reporting

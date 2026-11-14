@@ -529,5 +529,55 @@ def edit_notes(assessment_id):
     )
 
 
+@app.route(
+    "/assessment/<int:assessment_id>/delete",
+    methods=["GET", "POST"]
+)
+def delete_assessment(assessment_id):
+
+    record = get_assessment(assessment_id)
+
+    if record is None:
+        abort(404)
+
+    display_names = {
+        "water_leak": "Water Leak",
+        "electrical": "Electrical",
+        "heating": "Heating",
+        "damp_mould": "Damp & Mould",
+        "roofing": "Roofing",
+        "doors_windows": "Doors & Windows"
+    }
+
+    if request.method == "POST":
+        if request.form.get("confirm") != "yes":
+            return redirect(url_for("history"))
+
+        connection = sqlite3.connect(
+            "repairs.db"
+        )
+        cursor = connection.cursor()
+        cursor.execute(
+            """
+            DELETE FROM assessments
+            WHERE id = ?
+            """,
+            (assessment_id,)
+        )
+        connection.commit()
+        connection.close()
+
+        return redirect(url_for("history"))
+
+    return render_template(
+        "delete_assessment.html",
+        record=record,
+        repair_type_label=display_names.get(
+            record["repair_type"],
+            record["repair_type"]
+        )
+    )
+
+
 if __name__ == "__main__":
     app.run(debug=True)
