@@ -1,0 +1,7 @@
+{% if session.get("user") %}
+<p class="signed-in">
+    Signed in as {{ session.user }}
+    ·
+    <a href="{{ url_for('logout') }}">Log out</a>
+</p>
+{% endif %}

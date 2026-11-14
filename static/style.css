@@ -65,12 +65,24 @@ select {
     width: 300px;
 }
 
-textarea {
+textarea,
+input[type="text"],
+input[type="password"] {
     width: 100%;
     max-width: 100%;
     padding: 10px;
     font-family: Arial, sans-serif;
     font-size: 14px;
+}
+
+.error-message {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.signed-in {
+    margin: 0 0 16px 0;
+    color: #003366;
 }
 
 table {

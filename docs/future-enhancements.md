@@ -22,7 +22,7 @@
 
 ### Security
 
-- User Authentication
+- User Authentication (done — session login; demo user `advisor`)
 - User Roles
 - Audit Logging
 

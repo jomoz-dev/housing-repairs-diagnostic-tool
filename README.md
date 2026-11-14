@@ -74,6 +74,7 @@ Examples of the rules:
 - CSV export of assessment records
 - Edit assessment notes without re-running diagnosis
 - Delete an assessment after a confirmation step
+- Sign-in required for the tool, history, search and reports
 
 ---
 
@@ -94,6 +95,13 @@ python app.py
 ```
 
 Then open `http://127.0.0.1:5000/` in a browser.
+
+Sign in with the local demo account:
+
+- Username: `advisor`
+- Password: `changeme`
+
+Set `APP_USERNAME`, `APP_PASSWORD` and `SECRET_KEY` in the environment before using this beyond a local demo.
 
 `database.py` creates the `assessments` table if it does not already exist.
 
@@ -129,10 +137,11 @@ This tool standardises triage so the same answers produce the same priority, tra
 - Reporting dashboard
 - Edit assessment notes
 - Delete assessments with confirmation
+- Sign-in for a closed local demo
 
 ### Planned
 
-- User authentication and audit logging
+- User roles and audit logging
 - Resident self-service portal
 - Contractor tracking
 - PostgreSQL

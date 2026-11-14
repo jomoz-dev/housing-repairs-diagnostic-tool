@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Sign in — Housing Repairs Diagnostic Tool</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Housing Repairs Diagnostic Tool</h1>
+
+    <p>
+        Sign in to assess repairs, view history and run reports.
+    </p>
+
+    {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('login') }}">
+
+        <input type="hidden" name="next" value="{{ next_url }}">
+
+        <label for="username">Username</label>
+        <br>
+        <input id="username" type="text" name="username" required>
+
+        <br><br>
+
+        <label for="password">Password</label>
+        <br>
+        <input id="password" type="password" name="password" required>
+
+        <br><br>
+
+        <button type="submit">
+            Sign in
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

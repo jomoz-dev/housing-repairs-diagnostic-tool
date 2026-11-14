@@ -1,16 +1,22 @@
 from datetime import datetime
 
+import csv
+import hmac
+import os
 import sqlite3
 
-import csv
-
 from flask import Flask, render_template, request  # type: ignore[reportMissingImports]
-from flask import abort, redirect, send_file, url_for
+from flask import abort, redirect, send_file, session, url_for
 
 from diagnosis import diagnose_repair
 
 
 app = Flask(__name__)
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "dev-secret-change-me"
+)
+app.config["LOGIN_DISABLED"] = False
 
 
 def parse_stored_date(value):
@@ -45,6 +51,62 @@ def record_in_date_range(assessment_date, date_from, date_to):
     if date_to and stored_day > date_to:
         return False
     return True
+
+
+def demo_username():
+    return os.environ.get("APP_USERNAME", "advisor")
+
+
+def demo_password():
+    return os.environ.get("APP_PASSWORD", "changeme")
+
+
+def safe_next_url(value):
+    if value and value.startswith("/") and not value.startswith("//"):
+        return value
+    return url_for("home")
+
+
+@app.before_request
+def require_login():
+    if app.config.get("LOGIN_DISABLED"):
+        return None
+    if request.endpoint in ("login", "static"):
+        return None
+    if session.get("user"):
+        return None
+    return redirect(
+        url_for("login", next=request.path)
+    )
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+    next_url = request.args.get("next") or request.form.get("next") or ""
+
+    if request.method == "POST":
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
+        user_ok = hmac.compare_digest(username, demo_username())
+        password_ok = hmac.compare_digest(password, demo_password())
+        if user_ok and password_ok:
+            session["user"] = username
+            return redirect(safe_next_url(next_url))
+        error = "Username or password is not correct."
+
+    return render_template(
+        "login.html",
+        error=error,
+        next_url=next_url
+    )
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
 
 #Homepage Route
 @app.route("/")
