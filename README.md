@@ -70,7 +70,7 @@ Examples of the rules:
 - SQLite assessment history with assessment date
 - Dashboard: totals, priority split, most common repair types, and bar charts
 - Search by assessment reference
-- History filters by priority and repair type
+- History filters by priority, repair type and date range
 - CSV export of assessment records
 
 ---

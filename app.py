@@ -12,6 +12,40 @@ from diagnosis import diagnose_repair
 
 app = Flask(__name__)
 
+
+def parse_stored_date(value):
+    if not value:
+        return None
+    for fmt in ("%d/%m/%Y %H:%M", "%d/%m/%Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(value, fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def parse_query_date(value):
+    if not value:
+        return None
+    try:
+        return datetime.strptime(value, "%Y-%m-%d").date()
+    except ValueError:
+        return None
+
+
+def record_in_date_range(assessment_date, date_from, date_to):
+    if not date_from and not date_to:
+        return True
+    stored = parse_stored_date(assessment_date)
+    if stored is None:
+        return False
+    stored_day = stored.date()
+    if date_from and stored_day < date_from:
+        return False
+    if date_to and stored_day > date_to:
+        return False
+    return True
+
 #Homepage Route
 @app.route("/")
 def home():
@@ -336,59 +370,54 @@ def history():
         ""
     )
 
-    if priority and repair_type:
+    date_from_text = request.args.get(
+        "date_from",
+        ""
+    )
 
-        cursor.execute(
-            """
-            SELECT *
-            FROM assessments
-            WHERE priority = ?
-            AND repair_type = ?
-            ORDER BY id DESC
-            """,
-            (priority, repair_type)
+    date_to_text = request.args.get(
+        "date_to",
+        ""
+    )
+
+    date_from = parse_query_date(date_from_text)
+    date_to = parse_query_date(date_to_text)
+
+    clauses = []
+    params = []
+
+    if priority:
+        clauses.append("priority = ?")
+        params.append(priority)
+
+    if repair_type:
+        clauses.append("repair_type = ?")
+        params.append(repair_type)
+
+    query = "SELECT * FROM assessments"
+    if clauses:
+        query += " WHERE " + " AND ".join(clauses)
+    query += " ORDER BY id DESC"
+
+    cursor.execute(query, params)
+    records = [
+        row for row in cursor.fetchall()
+        if record_in_date_range(
+            row["assessment_date"],
+            date_from,
+            date_to
         )
-
-    elif priority:
-
-        cursor.execute(
-            """
-            SELECT *
-            FROM assessments
-            WHERE priority = ?
-            ORDER BY id DESC
-            """,
-            (priority,)
-        )
-
-    elif repair_type:
-
-        cursor.execute(
-            """
-            SELECT *
-            FROM assessments
-            WHERE repair_type = ?
-            ORDER BY id DESC
-            """,
-            (repair_type,)
-        )
-
-    else:
-
-        cursor.execute(
-            """
-            SELECT *
-            FROM assessments
-            ORDER BY id DESC
-            """
-        )
-    records = cursor.fetchall()
+    ]
 
     connection.close()
 
     return render_template(
         "history.html",
-        records=records
+        records=records,
+        selected_priority=priority,
+        selected_repair_type=repair_type,
+        date_from=date_from_text,
+        date_to=date_to_text
     )
 
 #Search route

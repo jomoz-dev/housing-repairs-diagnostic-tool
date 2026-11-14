@@ -16,7 +16,7 @@
 
 ### Reporting
 
-- Date Range Filtering
+- Date Range Filtering (done — history From / To dates)
 - Repair Performance Metrics
 - Export to Excel
 

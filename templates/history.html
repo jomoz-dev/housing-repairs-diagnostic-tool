@@ -18,61 +18,97 @@
     
     <form method="GET" action="/history">
 
+    <label>Priority</label>
+    <br>
     <select name="priority">
 
         <option value="">
             All Priorities
         </option>
 
-        <option value="Emergency">
+        <option value="Emergency"
+            {% if selected_priority == "Emergency" %}selected{% endif %}>
             Emergency
         </option>
 
-        <option value="Urgent">
+        <option value="Urgent"
+            {% if selected_priority == "Urgent" %}selected{% endif %}>
             Urgent
         </option>
 
-        <option value="Routine">
+        <option value="Routine"
+            {% if selected_priority == "Routine" %}selected{% endif %}>
             Routine
         </option>
     </select>
 
+    <br><br>
+
+    <label>Repair type</label>
+    <br>
     <select name="repair_type">
 
         <option value="">
             All Repair Types
         </option>
 
-        <option value="water_leak">
+        <option value="water_leak"
+            {% if selected_repair_type == "water_leak" %}selected{% endif %}>
             Water Leak
         </option>
 
-        <option value="electrical">
+        <option value="electrical"
+            {% if selected_repair_type == "electrical" %}selected{% endif %}>
             Electrical
         </option>
 
-        <option value="heating">
+        <option value="heating"
+            {% if selected_repair_type == "heating" %}selected{% endif %}>
             Heating
         </option>
 
-        <option value="roofing">
+        <option value="roofing"
+            {% if selected_repair_type == "roofing" %}selected{% endif %}>
             Roofing
         </option>
 
-        <option value="damp_mould">
+        <option value="damp_mould"
+            {% if selected_repair_type == "damp_mould" %}selected{% endif %}>
             Damp & Mould
         </option>
 
-        <option value="doors_windows">
+        <option value="doors_windows"
+            {% if selected_repair_type == "doors_windows" %}selected{% endif %}>
             Doors & Windows
         </option>
 
-
     </select>
+
+    <br><br>
+
+    <label>From</label>
+    <br>
+    <input type="date" name="date_from" value="{{ date_from }}">
+
+    <br><br>
+
+    <label>To</label>
+    <br>
+    <input type="date" name="date_to" value="{{ date_to }}">
+
+    <br><br>
 
     <button type="submit">
         Filter
     </button>
+
+    <a href="/history" class="button">
+        Clear
+    </a>
+
+    </form>
+
+    <br>
 
     <table>
 
@@ -126,11 +162,6 @@
         Back To Tool
 
     </a>
-
-    
-    
-</form>
-
 
 </div>
 
